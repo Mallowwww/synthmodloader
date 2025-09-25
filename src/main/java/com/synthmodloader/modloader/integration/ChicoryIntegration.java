@@ -1,8 +1,7 @@
 package com.synthmodloader.modloader.integration;
 
-import com.dylibso.chicory.runtime.ExportFunction;
-import com.dylibso.chicory.wasm.types.Value;
-import com.dylibso.chicory.wasm.Parser;
+import com.dylibso.chicory.runtime.ExportFunction; // works fine
+import com.dylibso.chicory.wasm.Parser; // breaks
 import com.dylibso.chicory.runtime.Instance;
 import com.synthmodloader.modloader.SynthModLoader;
 
@@ -19,7 +18,5 @@ public class ChicoryIntegration {
         } catch(Exception e) {
             SynthModLoader.LOGGER.error("Error loading test module !", e);
         }
-
-
     }
 }
