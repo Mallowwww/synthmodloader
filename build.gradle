@@ -23,7 +23,6 @@ repositories {
         url = 'https://maven.blamejared.com'
     }
     mavenCentral()
-    flatDir { dir 'libs' }
 }
 
 base {
@@ -102,9 +101,7 @@ dependencies {
 
     implementation "net.neoforged:neoforge:${neo_version}"
     implementation 'com.dylibso.chicory:runtime:1.5.1'
-    implementation 'com.dylibso.chicory:wasm:1.5.1'
     jarJar(implementation 'com.dylibso.chicory:runtime:1.5.1')
-    jarJar(implementation 'com.dylibso.chicory:wasm:1.5.1')
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
