@@ -58,7 +58,10 @@ runs {
         // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
         systemProperty 'forge.logging.console.level', 'debug'
 
+        //modSource project.sourceSets.main
         modSource project.sourceSets.main
+
+
     }
 
     client {
@@ -154,5 +157,12 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+    }
+}
+jar {
+    manifest {
+        attributes (
+                'FMLModType': 'LIBRARY'
+        )
     }
 }

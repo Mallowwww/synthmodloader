@@ -1,24 +1,17 @@
-package com.synthmodloader.modloader;
+package com.synth.main;
 
-import com.synthmodloader.modloader.Config;
-import com.synthmodloader.modloader.integration.ChicoryIntegration;
+import com.synth.main.integration.ChicoryIntegration;
+import com.synth.modloader.SynthMod;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLServiceProvider;
+import net.neoforged.fml.util.ServiceLoaderUtil;
+import net.neoforged.neoforgespi.language.IModLanguageLoader;
 import org.slf4j.Logger;
+
+import com.synth.modloader.SynthModLoader;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -28,14 +21,10 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(SynthModLoader.MODID)
-public class SynthModLoader {
+@Mod(Synth.MODID)
+public class Synth {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "sml";
     // Directly reference a slf4j logger
@@ -45,11 +34,14 @@ public class SynthModLoader {
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public SynthModLoader(IEventBus modEventBus, ModContainer modContainer) {
+    public Synth(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
         ChicoryIntegration.init();
+        var a = SynthModLoader.class;
+        System.out.println(a + " SYNTHMODLOADER CLASS");
+        FMLLoader.getLanguageLoadingProvider().forEach(System.out::println);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.

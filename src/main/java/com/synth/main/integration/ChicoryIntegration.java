@@ -1,11 +1,11 @@
-package com.synthmodloader.modloader.integration;
+package com.synth.main.integration;
 
 import com.dylibso.chicory.runtime.HostFunction;
 import com.dylibso.chicory.runtime.Instance;
 import com.dylibso.chicory.wasm.types.FunctionType;
 import com.dylibso.chicory.wasm.types.ValType;
-import com.synthmodloader.modloader.SynthModLoader;
-import com.synthmodloader.modloader.synth.SynthInstance;
+import com.synth.main.Synth;
+import com.synth.modloader.api.SynthInstance;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
@@ -31,17 +31,17 @@ public class ChicoryIntegration {
                     .build();
             var testFunction = synth.export("logIt").orElseThrow();
             testFunction.apply();
-            SynthModLoader.LOGGER.info("OUTPUT");
+            Synth.LOGGER.info("OUTPUT");
 
         } catch(Exception e) {
-            SynthModLoader.LOGGER.error("Error loading test module !", e);
+            Synth.LOGGER.error("Error loading test module !", e);
         }
     }
     private static long[] log(Instance instance, long... args) {
         var len = (int) args[0];
         var offset = (int) args[1];
         var message = instance.memory().readString(offset, len);
-        SynthModLoader.LOGGER.info(message);
+        Synth.LOGGER.info(message);
         return null;
     }
 }

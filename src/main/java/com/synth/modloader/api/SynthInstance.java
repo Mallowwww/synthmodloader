@@ -1,20 +1,15 @@
-package com.synthmodloader.modloader.synth;
+package com.synth.modloader.api;
 
 import com.dylibso.chicory.runtime.ExportFunction;
 import com.dylibso.chicory.runtime.HostFunction;
 import com.dylibso.chicory.runtime.Instance;
 import com.dylibso.chicory.runtime.Store;
 import com.dylibso.chicory.wasm.Parser;
-import com.synthmodloader.modloader.SynthModLoader;
-import net.minecraft.client.Minecraft;
+import com.synth.main.Synth;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.ModLoader;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import java.io.IOException;
-import java.time.chrono.MinguoEra;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -58,7 +53,7 @@ public class SynthInstance {
             try {
                 return new SynthInstance(location, functions);
             } catch (Exception e) {
-                SynthModLoader.LOGGER.error("Couldn't create SynthInstance !", e);
+                Synth.LOGGER.error("Couldn't create SynthInstance !", e);
             }
             return null;
 
