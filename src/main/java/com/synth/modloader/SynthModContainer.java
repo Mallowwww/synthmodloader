@@ -1,5 +1,6 @@
 package com.synth.modloader;
 
+import com.synth.modloader.api.SynthInstance;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.EventBusErrorMessage;
 import net.neoforged.bus.api.BusBuilder;
@@ -44,7 +45,6 @@ public class SynthModContainer extends ModContainer {
                 .allowPerPhasePost()
                 .build();
         this.layer = gameLayer.findModule(info.getOwningFile().moduleName()).orElseThrow();
-
         var context = ModLoadingContext.get();
         try {
             context.setActiveContainer(this);

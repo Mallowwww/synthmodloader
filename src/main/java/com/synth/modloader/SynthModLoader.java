@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SynthModLoader implements IModLanguageLoader {
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     @Override
     public String name() {
         return "synthmodloader";

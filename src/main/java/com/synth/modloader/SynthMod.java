@@ -1,11 +1,13 @@
 package com.synth.modloader;
 
+import com.synth.modloader.api.SynthInstance;
 import net.neoforged.api.distmarker.Dist;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.function.Supplier;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -18,7 +20,6 @@ public @interface SynthMod {
      * By default, you will have a resource domain that matches the modid. All these uses require that constraints are imposed on the format of the modid.
      */
     String value();
-
     /**
      * {@return the side to load this mod entrypoint on}
      */
